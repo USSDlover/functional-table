@@ -5,6 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EffectsModule } from '@ngrx/effects';
+import { usersReducer } from './state/users.reducer';
+import { UsersEffect } from './state/users.effect';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -13,8 +17,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({}, {}),
-    BrowserAnimationsModule
+    StoreModule.forRoot({ users: usersReducer }),
+    BrowserAnimationsModule,
+    EffectsModule.forRoot([ UsersEffect ]),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

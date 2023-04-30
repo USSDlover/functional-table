@@ -22,8 +22,8 @@ export type AgeFilter = {
 };
 
 type BirthDateFilter = {
-  from: Date,
-  to: Date,
+  from?: Date,
+  to?: Date,
 }
 
 export interface UserFilter {

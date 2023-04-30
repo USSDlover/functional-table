@@ -15,6 +15,7 @@ import { GenderFilter } from './gender/gender.filter';
 import { Genders, UserFilter } from '../user-list/users.model';
 import { AgeFilter } from './age/age.filter';
 import { EyeColorFilter } from './eye-color/eye-color.filter';
+import { BirthDateFilter } from './birth-date/birth-date.filter';
 
 const Components = [
   SearchFilter
@@ -35,6 +36,7 @@ const Components = [
     GenderFilter,
     AgeFilter,
     EyeColorFilter,
+    BirthDateFilter,
   ],
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss']
@@ -61,15 +63,35 @@ export class FilterComponent {
   }
 
   onGenderSelectionChange(genders: Genders[]): void {
-    this.store.dispatch(UsersApiActions.filterUser({ filter: { ...this.appliedFilter, gender: genders } }))
+    this.appliedFilter = {
+      ...this.appliedFilter,
+      gender: genders
+    }
+    this.store.dispatch(UsersApiActions.filterUser({ filter: this.appliedFilter }));
   }
 
   onAgeFilterApplied(filter: UserFilter['age']): void {
-    this.store.dispatch(UsersApiActions.filterUser({ filter: { ...this.appliedFilter, age: filter } }))
+    this.appliedFilter = {
+      ...this.appliedFilter,
+      age: filter
+    }
+    this.store.dispatch(UsersApiActions.filterUser({ filter: this.appliedFilter }));
   }
 
   onEyeColorSelect(filter: UserFilter['eyeColor']): void {
-    this.store.dispatch(UsersApiActions.filterUser({ filter: { ...this.appliedFilter, eyeColor: filter } }));
+    this.appliedFilter = {
+      ...this.appliedFilter,
+      eyeColor: filter
+    }
+    this.store.dispatch(UsersApiActions.filterUser({ filter: this.appliedFilter }));
+  }
+
+  onBirthdateFilterApplied(filter: UserFilter['birthDate']): void  {
+    this.appliedFilter = {
+      ...this.appliedFilter,
+      birthDate: filter
+    }
+    this.store.dispatch(UsersApiActions.filterUser({ filter: this.appliedFilter }));
   }
 
 }

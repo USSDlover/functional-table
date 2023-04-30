@@ -65,8 +65,18 @@ const helpers = {
       return users.filter(user => {
         const userBirthDate = moment(user.birthDate);
 
-        if (userBirthDate.isSameOrAfter(filter?.from) && userBirthDate.isSameOrBefore(filter?.to))
+        if (!!filter?.from && !!filter?.to) {
+          if (userBirthDate.isSameOrAfter(filter?.from) && userBirthDate.isSameOrBefore(filter?.to))
+            return user;
+        } else if (!!filter?.from) {
+          if (userBirthDate.isSameOrAfter(filter.from))
+            return user;
+        } else if (!!filter?.to) {
+          if (userBirthDate.isSameOrBefore(filter.to))
+            return user;
+        } else if (!(!!filter?.from) && !(!!filter?.to)) {
           return user;
+        }
 
         return;
       });

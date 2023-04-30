@@ -6,8 +6,9 @@
     <mat-toolbar>
       Activate Filters
     </mat-toolbar>
-    <mat-nav-list>
+    <mat-nav-list class="list-wrapper">
       <div mat-list-item>
+        <h4>Filter by Gender</h4>
         <gender-filter (onSelectionChange)="onGenderSelectionChange($event)"></gender-filter>
       </div>
       <hr>
@@ -17,7 +18,13 @@
       </div>
       <hr>
       <div mat-list-item>
+        <h4>Filter by Eye Colors</h4>
         <eye-color-filter (onSelectionChange)="onEyeColorSelect($event)"></eye-color-filter>
+      </div>
+      <hr>
+      <div mat-list-item>
+        <h4>Filter by Birthdate</h4>
+        <birth-date-filter (onApplyFilter)="onBirthdateFilterApplied($event)"></birth-date-filter>
       </div>
     </mat-nav-list>
   </mat-sidenav>

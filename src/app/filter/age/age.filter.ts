@@ -35,12 +35,13 @@ import { MatIconModule } from '@angular/material/icon';
         <input matInput placeholder="18" [formControl]="ageControl" />
       </mat-form-field>
       <button
-        [disabled]="!(!!operationControl.getRawValue()) || !(!!operationControl.getRawValue())"
-        mat-button
+        style="width: 100%; margin: .75rem 0;"
+        color="primary"
+        [disabled]="!(!!operationControl.getRawValue()) || !(!!ageControl.getRawValue())"
+        mat-raised-button
         (click)="onApplyFilter()"
       >
-        Apply
-        <mat-icon>apply</mat-icon>
+        Apply Filter
       </button>
     </div>
   `

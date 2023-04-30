@@ -7,9 +7,9 @@
       Activate Filters
     </mat-toolbar>
     <mat-nav-list>
-      <button mat-list-item>
-        Gender
-      </button>
+      <div mat-list-item>
+        <gender-filter (onSelectionChange)="onGenderSelectionChange($event)"></gender-filter>
+      </div>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -26,10 +26,7 @@
         <span>Users Table</span>
       </mat-toolbar-row>
       <mat-toolbar-row class="mat-elevation-z8 input-toolbar">
-        <search-user
-          [model]="searchQueryModel"
-          (modelChange)="onSearchQueryChange($event)"
-        ></search-user>
+        <search-user [model]="searchQueryModel" (modelChange)="onSearchQueryChange($event)"></search-user>
       </mat-toolbar-row>
     </mat-toolbar>
     <ng-content></ng-content>

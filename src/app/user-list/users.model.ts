@@ -1,4 +1,4 @@
-type Genders = 'female' | 'male' | 'others' | 'preferNotToSay';
+export type Genders = 'female' | 'male' | 'others';
 
 export interface User {
   id: number;
@@ -27,7 +27,6 @@ type BirthDateFilter = {
 }
 
 export interface UserFilter {
-  type: 'gender' | 'age' | 'eyeColor' | 'birthDate';
   gender?: GenderFilter;
   age?: AgeFilter;
   eyeColor?: string[];

@@ -11,6 +11,8 @@ import { SearchFilter } from './search/search.filter';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { UsersApiActions } from '../state/users.action';
+import { GenderFilter } from './gender/gender.filter';
+import { Genders } from '../user-list/users.model';
 
 const Components = [
   SearchFilter
@@ -28,6 +30,7 @@ const Components = [
     ...Components,
     AsyncPipe,
     NgIf,
+    GenderFilter,
   ],
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss']
@@ -49,6 +52,10 @@ export class FilterComponent {
 
   onSearchQueryChange(query: string): void {
     this.store.dispatch(UsersApiActions.searchUser({ query }));
+  }
+
+  onGenderSelectionChange(genders: Genders[]): void {
+    this.store.dispatch(UsersApiActions.filterUser({ filter: { gender: genders } }))
   }
 
 }

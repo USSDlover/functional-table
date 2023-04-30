@@ -51,9 +51,12 @@ const helpers = {
     },
     eyeColor: (filter: UserFilter['eyeColor'], users: User[]): User[] => {
       return users.filter(user => {
-        if (filter?.indexOf(user.eyeColor)! > -1) {
+        if (filter?.length === 0)
           return user;
-        }
+
+        if (filter?.indexOf(user.eyeColor)! > -1)
+          return user;
+
         return;
       });
     },

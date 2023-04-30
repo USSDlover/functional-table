@@ -13,6 +13,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { usersReducer } from './state/users.reducer';
 import { UsersEffect } from './state/users.effect';
 import { HttpClientModule } from '@angular/common/http';
+import { FilterComponent } from './filter/filter.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatPaginatorModule,
     MatSortModule,
     EffectsModule.forRoot([ UsersEffect ]),
-    HttpClientModule
+    HttpClientModule,
+    FilterComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

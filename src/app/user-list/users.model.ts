@@ -16,7 +16,7 @@ export interface User {
 
 type GenderFilter = Array<Genders>;
 
-type AgeFilter = {
+export type AgeFilter = {
   op: 'equal' | 'greater' | 'smaller';
   val: number;
 };

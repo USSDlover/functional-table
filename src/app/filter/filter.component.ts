@@ -12,7 +12,8 @@ import { AsyncPipe, NgIf } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { UsersApiActions } from '../state/users.action';
 import { GenderFilter } from './gender/gender.filter';
-import { Genders } from '../user-list/users.model';
+import { Genders, AgeFilter as AgeFilterType, UserFilter } from '../user-list/users.model';
+import { AgeFilter } from './age/age.filter';
 
 const Components = [
   SearchFilter
@@ -31,6 +32,7 @@ const Components = [
     AsyncPipe,
     NgIf,
     GenderFilter,
+    AgeFilter,
   ],
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss']
@@ -45,6 +47,8 @@ export class FilterComponent {
 
   searchQueryModel = '';
 
+  appliedFilter: UserFilter = {};
+
   constructor(
     private breakpointObserver: BreakpointObserver,
     private store: Store,
@@ -55,7 +59,11 @@ export class FilterComponent {
   }
 
   onGenderSelectionChange(genders: Genders[]): void {
-    this.store.dispatch(UsersApiActions.filterUser({ filter: { gender: genders } }))
+    this.store.dispatch(UsersApiActions.filterUser({ filter: { ...this.appliedFilter, gender: genders } }))
+  }
+
+  onAgeFilterApplied(filter: AgeFilterType): void {
+    this.store.dispatch(UsersApiActions.filterUser({ filter: { ...this.appliedFilter, age: filter } }))
   }
 
 }

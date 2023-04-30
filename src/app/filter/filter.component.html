@@ -10,6 +10,12 @@
       <div mat-list-item>
         <gender-filter (onSelectionChange)="onGenderSelectionChange($event)"></gender-filter>
       </div>
+      <hr>
+      <div mat-list-item>
+        <h4>Filter by Age</h4>
+        <age-filter (onFilterChange)="onAgeFilterApplied($event)"></age-filter>
+      </div>
+      <hr>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

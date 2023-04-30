@@ -12,8 +12,9 @@ import { AsyncPipe, NgIf } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { UsersApiActions } from '../state/users.action';
 import { GenderFilter } from './gender/gender.filter';
-import { Genders, AgeFilter as AgeFilterType, UserFilter } from '../user-list/users.model';
+import { Genders, UserFilter } from '../user-list/users.model';
 import { AgeFilter } from './age/age.filter';
+import { EyeColorFilter } from './eye-color/eye-color.filter';
 
 const Components = [
   SearchFilter
@@ -33,6 +34,7 @@ const Components = [
     NgIf,
     GenderFilter,
     AgeFilter,
+    EyeColorFilter,
   ],
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss']
@@ -62,8 +64,12 @@ export class FilterComponent {
     this.store.dispatch(UsersApiActions.filterUser({ filter: { ...this.appliedFilter, gender: genders } }))
   }
 
-  onAgeFilterApplied(filter: AgeFilterType): void {
+  onAgeFilterApplied(filter: UserFilter['age']): void {
     this.store.dispatch(UsersApiActions.filterUser({ filter: { ...this.appliedFilter, age: filter } }))
+  }
+
+  onEyeColorSelect(filter: UserFilter['eyeColor']): void {
+    this.store.dispatch(UsersApiActions.filterUser({ filter: { ...this.appliedFilter, eyeColor: filter } }));
   }
 
 }

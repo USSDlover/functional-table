@@ -15,6 +15,12 @@ import { UsersEffect } from './state/users.effect';
 import { HttpClientModule } from '@angular/common/http';
 import { FilterComponent } from './filter/filter.component';
 
+const AngularMaterials = [
+  MatTableModule,
+  MatPaginatorModule,
+  MatSortModule,
+]
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,15 +28,15 @@ import { FilterComponent } from './filter/filter.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    StoreModule.forRoot({ users: usersReducer }),
     BrowserAnimationsModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    EffectsModule.forRoot([ UsersEffect ]),
     HttpClientModule,
-    FilterComponent
+
+    StoreModule.forRoot({ users: usersReducer }),
+    EffectsModule.forRoot([ UsersEffect ]),
+
+    ...AngularMaterials,
+    FilterComponent,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

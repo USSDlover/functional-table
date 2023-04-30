@@ -31,6 +31,7 @@ const helpers = {
   filter: {
     gender: (filter: UserFilter['gender'], users: User[]): User[] => {
       return users.filter(user => {
+        if (filter?.length === 0) return user;
         if (filter!.indexOf(user.gender!) > -1) return user;
         return;
       });
